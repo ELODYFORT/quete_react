@@ -1,6 +1,11 @@
 import "./App.css";
 import PokemonCard from "./components/PokemonCard";
 
+interface PokemonCard {
+  name: "...";
+  imgSrc?: "...";
+}
+
 function App() {
   const pokemon = { name: "mew", imgSrc: undefined };
   console.log(pokemon);
