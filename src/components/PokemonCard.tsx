@@ -27,4 +27,5 @@ function PokemonCard() {
     </figure>
   );
 }
+console.log(PokemonCard);
 export default PokemonCard;
