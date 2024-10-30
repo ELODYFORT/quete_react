@@ -1,35 +1,62 @@
-import { useState } from "react";
-
-import viteLogo from "/vite.svg";
-import reactLogo from "./assets/react.svg";
-
 import "./App.css";
+import PokemonCard from "./components/PokemonCard";
+import { useState, useEffect } from "react";
+
+import NavBar from "./components/NavBar";
+
+interface Pokemon {
+  name: string;
+  imgSrc?: string;
+}
+
+const pokemonList = [
+  {
+    id: "1",
+    name: "bulbasaur",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+  },
+  {
+    id: "2",
+    name: "charmander",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+  {
+    id: "3",
+    name: "squirtle",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+  {
+    id: "4",
+    name: "pikachu",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  },
+  {
+    id: "5",
+    name: "mew",
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+  console.log(pokemonList);
+  useEffect(() => {
+    alert("hello pokemon trainer");
+  }, []);
+  useEffect(() => {
+    if (pokemonList[pokemonIndex].name === "pikachu") {
+      alert("pika pika !");
+    }
+  }, [pokemonIndex]);
   return (
     <>
+      <NavBar pokemonList={pokemonList} setPokemonIndex={setPokemonIndex} />
       <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <PokemonCard pokemon={pokemonList[pokemonIndex]} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
